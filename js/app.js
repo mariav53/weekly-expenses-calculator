@@ -39,6 +39,21 @@ class Interfaz {
       formulario.reset();
     }, 2500);
   }
+  //inserta gastos a istado
+  agregarGastoListado(nombre, cantidad){
+    const gastosListado = document.querySelector('#gastos ul');
+    // crear li
+    const li = document.createElement('li');
+    li.className = 'list-group-item d-flex justify-content-between align-items-center'
+    // insertar gastos
+    li.innerHTML = `
+      ${nombre}
+      <span class="badge badge-primary badge-pill">$ ${cantidad}</span>
+    `;
+    // insertar en HTML
+    gastosListado.appendChild(li);
+
+  }
 }
 
 
@@ -63,6 +78,7 @@ document.addEventListener('DOMContentLoaded', function(){
       ui.imprimirMensaje('Hubo un error', 'error');
     }else{
       // ui.imprimirMensaje('El gasto se agrego', '');
-      console.log(gasto);
+      ui.imprimirMensaje('Gasto guardado', 'correcto');
+      ui.agregarGastoListado(nombreGasto, cantidadGasto);
     }
   })
