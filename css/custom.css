@@ -6,6 +6,9 @@ background: linear-gradient(to right, #004e92, #000428);
 header {
     margin: 30px 0;
 }
+.container{
+  font-family: Arial;
+}
 .contenido {
     padding:20px;
 }
@@ -31,8 +34,39 @@ h1{
 }
 h2 {
     font-family: 'Raleway', sans-serif;
-    font-weight: 100;
-    color:#004e92;
-    font-size: 22px;
+    font-weight: 500;
+        color: black;
+        font-size: 2em;
     margin-bottom:30px;
+}
+
+
+.section-container{
+  display: flex;
+  justify-content: space-around;
+
+}
+
+.form-group {
+    margin: 20px 0;
+}
+
+input{
+    width: 250px;
+    border: none;
+    border: 1px solid grey;
+    border-radius: 3px;
+    padding: 6px 10px;
+    font-size: 0.9em;
+}
+
+header {
+    margin: 48px 0;
+    text-align: center;
+}
+
+
+ul.list-group {
+    list-style-type: none;
+    padding: 0;
 }

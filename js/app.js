@@ -1,5 +1,6 @@
 //variables
-const presupuestoUsuario = prompt('Cual es tu presupuesto semanal?');
+const budget = document.querySelector('#budget');
+let presupuestoUsuario;
 let cantidadPresupuesto;
 const formulario = document.querySelector('#agregar-gasto');
 
@@ -48,7 +49,7 @@ class Interfaz {
     // insertar gastos
     li.innerHTML = `
       ${nombre}
-      <span class="badge badge-primary badge-pill">$ ${cantidad}</span>
+      <span class="badge badge-primary badge-pill">€ ${cantidad}</span>
     `;
     // insertar en HTML
     gastosListado.appendChild(li);
@@ -80,29 +81,33 @@ class Interfaz {
   }
 }
 
-
-document.addEventListener('DOMContentLoaded', function(){
+//agregar el presupuesto semanal
+function agregarPresupuesto(){
+  presupuestoUsuario = prompt('Cual es tu presupuesto semanal?');
+  console.log(presupuestoUsuario);
   if(presupuestoUsuario === null || presupuestoUsuario === ''){
     window.location.reload();
   } else {
     cantidadPresupuesto = new Presupuesto(presupuestoUsuario);
-      const ui = new Interfaz();
-      ui.insertarPresupuesto(cantidadPresupuesto.presupuesto);
-  }
-
-  });
-  formulario.addEventListener('submit', function(e){
-    e.preventDefault();
     const ui = new Interfaz();
-    const nombreGasto = document.querySelector('#gasto').value;
-    const cantidadGasto = document.querySelector('#cantidad').value;
-    if (nombreGasto === ''|| cantidadGasto === ''){
-      //2 parametros: mensaje y tipo de mensaje
-      ui.imprimirMensaje('Hubo un error', 'error');
-    }else{
-      // ui.imprimirMensaje('El gasto se agrego', '');
-      ui.imprimirMensaje('Gasto guardado', 'correcto');
-      ui.agregarGastoListado(nombreGasto, cantidadGasto);
-      ui.presupuestoRestante(cantidadGasto);
-    }
-  });
+    ui.insertarPresupuesto(cantidadPresupuesto.presupuesto);
+  }
+}
+
+budget.addEventListener('click', agregarPresupuesto);
+
+formulario.addEventListener('submit', function(e){
+  e.preventDefault();
+  const ui = new Interfaz();
+  const nombreGasto = document.querySelector('#gasto').value;
+  const cantidadGasto = document.querySelector('#cantidad').value;
+  if (nombreGasto === ''|| cantidadGasto === ''){
+    //2 parametros: mensaje y tipo de mensaje
+    ui.imprimirMensaje('Hubo un error', 'error');
+  }else{
+    // ui.imprimirMensaje('El gasto se agrego', '');
+    ui.imprimirMensaje('Gasto guardado', 'correcto');
+    ui.agregarGastoListado(nombreGasto, cantidadGasto);
+    ui.presupuestoRestante(cantidadGasto);
+  }
+});

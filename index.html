@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,400" rel="stylesheet">
     <link rel="stylesheet" href="css/custom.css">
 
@@ -13,12 +13,12 @@
   <body>
     <div class="container">
       <header>
-        <h1 class="text-center">Gasto Semanal</h1>
+        <button class="btn btn-primary" id="budget">Añade tu prespuesto Semanal</button>
       </header>
-      <section class="contenido-principal">
-        <div class="row">
-          <div class="col ">
-            <div class="contenido primario">
+      <section>
+        <div class="section-container">
+          <div class="gastos ">
+            <div class="gastos-container primario">
               <h2 class="text-center">Añade tus gastos aqui</h2>
               <form id="agregar-gasto" action="#">
                 <div class="form-group">
@@ -31,24 +31,24 @@
                 </div>
                 <button type="submit" class="btn btn-primary">Agregar</button>
               </form>
-            </div> <!--.contenido-->
-          </div> <!--.col-->
-          <div class="col">
-            <div class="contenido secundario">
+            </div> <!--.gastos-container-->
+          </div> <!--.gastos-->
+          <div class="listado">
+            <div class="listado-container">
               <h2 class="text-center">Listado</h2>
               <div id="gastos">
                 <ul class="list-group"></ul>
               </div>
               <div id="presupuesto" class="presupuesto">
                 <div class="alert alert-primary">
-                  <p>Presupuesto: $ <span id="total"></span> </p>
+                  <p>Presupuesto: € <span id="total"></span> </p>
                 </div>
                 <div class="restante alert alert-success">
-                  <p>Restante: $ <span id="restante"></span></p>
+                  <p>Restante: € <span id="restante"></span></p>
                 </div>
               </div> <!--.presupuesto-->
-            </div> <!--.contenido-->
-          </div><!--.col-->
+            </div> <!--.listado-container-->
+          </div><!--.listado-->
         </div> <!--.row-->
       </section>
     </div>
