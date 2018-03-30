@@ -10,7 +10,7 @@ class Presupuesto {
   }
   //metodo para restar al presupuesto actual
   presupuestoRestante(cantidad = 0){
-    return this.restante -= Number(presupuesto);
+    return this.restante -= Number(cantidad);
   }
 }
 
@@ -52,7 +52,31 @@ class Interfaz {
     `;
     // insertar en HTML
     gastosListado.appendChild(li);
+  }
 
+  //comprueba presupuesto restante
+  presupuestoRestante(cantidad){
+     const restante = document.querySelector('#restante');
+     //leemos el presupuesto restante
+     const presupuestoRestanteUsuario = cantidadPresupuesto.presupuestoRestante(cantidad);
+     restante.innerHTML = `${presupuestoRestanteUsuario}`;
+    this.comprobarPresupuesto();
+  }
+
+  //cambiar color al presupuesto restante
+  comprobarPresupuesto(){
+    const presupuestoTotal = cantidadPresupuesto.presupuesto;
+    const presupuestoRestante = cantidadPresupuesto.restante;
+    //comprobar 25% del presupuesto
+    if(presupuestoTotal / 4 > presupuestoRestante){
+      const restante = document.querySelector('.restante');
+      restante.classList.remove('alert-success', 'alert-warning');
+      restante.classList.add('alert-danger');
+    } else if (presupuestoTotal / 2 > presupuestoRestante) {
+      const restante = document.querySelector('.restante');
+      restante.classList.remove('alert-success');
+      restante.classList.add('alert-warning');
+    }
   }
 }
 
@@ -70,7 +94,6 @@ document.addEventListener('DOMContentLoaded', function(){
   formulario.addEventListener('submit', function(e){
     e.preventDefault();
     const ui = new Interfaz();
-
     const nombreGasto = document.querySelector('#gasto').value;
     const cantidadGasto = document.querySelector('#cantidad').value;
     if (nombreGasto === ''|| cantidadGasto === ''){
@@ -80,5 +103,6 @@ document.addEventListener('DOMContentLoaded', function(){
       // ui.imprimirMensaje('El gasto se agrego', '');
       ui.imprimirMensaje('Gasto guardado', 'correcto');
       ui.agregarGastoListado(nombreGasto, cantidadGasto);
+      ui.presupuestoRestante(cantidadGasto);
     }
-  })
+  });
